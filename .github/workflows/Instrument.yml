@@ -42,7 +42,7 @@ jobs:
     - name: Create a ZIP archive of the repository
       run: |
         #zip -r ${{ env.ApplicationFile }} . -x ".git/*" ".github/*" > $null 2>&1
-        tar --exclude='.git' --exclude='.github' -czf ${{ env.ApplicationFile }} . > $null 2>&1
+        7z a -tzip ${{ env.ApplicationFile }} . -x!.git/* -x!.github/*
 
     - name: project dir path
       run: |
