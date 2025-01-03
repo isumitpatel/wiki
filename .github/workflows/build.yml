@@ -7,15 +7,7 @@ jobs:
   build:
     name: Build
     runs-on: self-hosted
-   
-    steps:
-    - uses: actions/checkout@v4
-
-  windows:
-    name: Windows Build
-    runs-on: windows-latest
-    #needs: [cypress]
-
+       
     steps:
     - name: Setup Node.js environment
       uses: actions/setup-node@v4
