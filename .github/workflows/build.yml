@@ -35,3 +35,25 @@ jobs:
     - name: Rename config.sample.yml to config.yml
       run: |
         Rename-Item -Path "$env:GITHUB_WORKSPACE/config.sample.yml" -NewName "config.yml"
+
+    # Edit config.yml with Secrets
+    - name: Edit config.yml with Secrets
+      run: |
+        $configPath = "$env:GITHUB_WORKSPACE/config.yml"
+        if (Test-Path $configPath) {
+          # Read the config.yml file
+          $config = Get-Content $configPath -Raw
+
+          # Replace the values with secrets
+          $config = $config -replace 'host:.*', "host: ${{ secrets.DB_HOST }}"
+          $config = $config -replace 'port:.*', "port: ${{ secrets.DB_PORT }}"
+          $config = $config -replace 'user:.*', "user: ${{ secrets.DB_USER }}"
+          $config = $config -replace 'pass:.*', "pass: ${{ secrets.DB_PASS }}"
+          $config = $config -replace 'db:.*', "db: ${{ secrets.DB_NAME }}"
+          $config = $config -replace 'ssl:.*', "ssl: ${{ secrets.DB_SSL }}"
+
+          # Write the changes back to config.yml
+          Set-Content -Path $configPath -Value $config
+        } else {
+          Write-Error "config.yml not found!"
+        }
