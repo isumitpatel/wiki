@@ -26,7 +26,7 @@ jobs:
 
     - name: Extract Wiki.js
       run: |
-         tar -xzf wiki-js-windows.tar.gz -C win
+         tar -xzf wiki-js-windows.tar.gz -C $env:GITHUB_WORKSPACE
 
     - name: Clean Downloaded File
       run: del wiki-js-windows.tar.gz
