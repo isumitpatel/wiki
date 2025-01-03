@@ -36,7 +36,8 @@ jobs:
       run: |
         Rename-Item -Path "$env:GITHUB_WORKSPACE/config.sample.yml" -NewName "config.yml"
 
-    # Edit config.yml with Secrets
+
+# PostgreSQL / MySQL / MariaDB / MS SQL Server only:
     - name: Edit config.yml with Secrets
       run: |
         $configPath = "$env:GITHUB_WORKSPACE/config.yml"
@@ -57,3 +58,4 @@ jobs:
         } else {
           Write-Error "config.yml not found!"
         }
+
