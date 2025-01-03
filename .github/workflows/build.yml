@@ -1,7 +1,7 @@
 name: Build
 
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -9,10 +9,16 @@ jobs:
     runs-on: self-hosted
        
     steps:
-   # - name: Setup Node.js environment
-   #   uses: actions/setup-node@v4
-   #   with:
-   #     node-version: 20.x
+    # - name: Setup Node.js environment
+    #   uses: actions/setup-node@v4
+    #   with:
+    #     node-version: 20.x
+
+    - name: Clean Workspace
+      run: |
+        if (Test-Path $env:GITHUB_WORKSPACE\*) {
+          Remove-Item $env:GITHUB_WORKSPACE\* -Force -Recurse
+        }
 
     - name: Download Wiki.js for Windows
       run: |
@@ -20,7 +26,8 @@ jobs:
 
     - name: Extract Wiki.js
       run: |
-        tar -xzf $env:GITHUB_WORKSPACE\wiki-js-windows.tar.gz -C $env:GITHUB_WORKSPACE\win
-        
-    - name: Clean file
-      run: del wiki-js-windows.tar.gz 
+        mkdir -p win
+        tar -xzf wiki-js-windows.tar.gz -C win
+
+    - name: Clean Downloaded File
+      run: del wiki-js-windows.tar.gz
