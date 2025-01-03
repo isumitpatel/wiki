@@ -22,7 +22,7 @@ jobs:
 
     - name: Download Wiki.js for Windows
       run: |
-        Invoke-WebRequest -Uri "https://github.com/Requarks/wiki/releases/latest/download/wiki-js-windows.tar.gz" -OutFile "wiki-js.tar.gz"
+        Invoke-WebRequest -Uri "https://github.com/Requarks/wiki/releases/latest/download/wiki-js-windows.tar.gz" -OutFile "wiki-js-windows.tar.gz"
 
     - name: Extract Wiki.js
       run: |
