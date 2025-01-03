@@ -64,7 +64,3 @@ jobs:
         } else {
           Write-Error "config.yml not found!"
         }
-
-    # Optional - PostgreSQL / MySQL / MariaDB only:
-    - name: Exit Script
-      run: exit 0
