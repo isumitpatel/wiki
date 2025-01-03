@@ -16,9 +16,11 @@ jobs:
 
     - name: Download Wiki.js for Windows
       run: |
-        Invoke-WebRequest -Uri "https://github.com/requarks/wiki/releases/download/v2.5.305/wiki-js-windows.tar.gz" -OutFile "$env:GITHUB_WORKSPACE\wiki-js-windows.tar.gz"
+        Invoke-WebRequest -Uri "https://github.com/requarks/wiki/releases/download/v2.5.305/wiki-js-windows.tar.gz" -OutFile "wiki-js-windows.tar.gz"
 
     - name: Extract Wiki.js
       run: |
-        mkdir -p win
         tar -xzf $env:GITHUB_WORKSPACE\wiki-js-windows.tar.gz -C $env:GITHUB_WORKSPACE\win
+        
+    - name: Clean file
+      run: del wiki-js-windows.tar.gz 
